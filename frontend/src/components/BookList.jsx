@@ -1,9 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { SimpleGrid } from '@chakra-ui/react';
+import BookCard from './BookCard';
 
-const BookList = () => {
-  return (
-    <div>BookList</div>
-  )
-}
+const BookList = ({ books }) => {
+    if (!books || books.length === 0) {
+        return <p>No books available.</p>;
+    }
 
-export default BookList
+    return (
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="40px">
+            {books.map(book => (
+                <BookCard key={book._id} book={book} />
+            ))}
+        </SimpleGrid>
+    );
+};
+
+export default BookList;
